@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
+import { useAuth } from "../../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const FindDoctor = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const [doctors, setDoctors] = useState([]);
   const [query, setQuery] = useState("");
@@ -25,14 +27,10 @@ const FindDoctor = () => {
 
       const response = await api.get("/api/public/doctors");
 
-      setDoctors(
-        Array.isArray(response.data) ? response.data : []
-      );
+      setDoctors(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       console.error("Failed to load doctors:", err);
-      setError(
-        "Unable to load doctors right now. Please try again."
-      );
+      setError("Unable to load doctors right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -59,19 +57,12 @@ const FindDoctor = () => {
         params.location = location.trim();
       }
 
-      const response = await api.get(
-        "/api/public/doctors/search",
-        { params }
-      );
+      const response = await api.get("/api/public/doctors/search", { params });
 
-      setDoctors(
-        Array.isArray(response.data) ? response.data : []
-      );
+      setDoctors(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       console.error("Doctor search failed:", err);
-      setError(
-        "Unable to search doctors. Please try again."
-      );
+      setError("Unable to search doctors. Please try again.");
       setDoctors([]);
     } finally {
       setSearching(false);
@@ -101,6 +92,18 @@ const FindDoctor = () => {
         <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-[#f1f8f6]" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          {isAuthenticated && (
+            <Link
+              to="/dashboard"
+              className="mb-7 inline-flex items-center gap-2 !rounded-full !border !border-[#dce8e5] !bg-white !px-4 !py-2 !font-sans !text-sm !font-semibold !text-[#006b55] no-underline shadow-sm transition hover:!border-[#006b55] hover:!bg-[#e8f6f2]"
+            >
+              <span aria-hidden="true" className="text-base">
+                ←
+              </span>
+              Back to Patient Portal
+            </Link>
+          )}
+
           <div className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-end">
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-[#006b55]">

@@ -1,4 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
+
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import { useTheme } from "../../context/ThemeContext";
@@ -18,6 +19,9 @@ const links = [
 function PublicNavbar() {
   const [open, setOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+
+  const { pathname } = useLocation();
+  const isFindDoctorPage = pathname === "/find-doctor";
 
   const { theme, toggleTheme } = useTheme();
 
@@ -42,18 +46,11 @@ function PublicNavbar() {
 
   return (
     <>
-      {/* =====================================================
-          TOP UTILITY BAR
-          THIS BAR SCROLLS AWAY
-          ===================================================== */}
-
+      {/* TOP UTILITY BAR */}
       <div className="medicare-topbar w-full bg-[#004f40] !text-white">
         <div className="mx-auto flex min-h-[38px] w-full items-center justify-between px-5 text-[12px] sm:px-8 lg:px-10">
-
           {/* LEFT */}
-
           <div className="hidden items-center gap-5 sm:flex">
-
             <a
               href="tel:+9118001234567"
               className="whitespace-nowrap !text-white no-underline transition hover:!text-[#bde9df]"
@@ -69,21 +66,17 @@ function PublicNavbar() {
             >
               ✉ care@medicare.health
             </a>
-
           </div>
 
           {/* RIGHT */}
-
           <div className="ml-auto flex items-center gap-3 sm:gap-4">
-
             {isAuthenticated ? (
               <Link
                 to="/dashboard"
+                onClick={close}
                 className="whitespace-nowrap font-medium !text-white no-underline transition hover:!text-[#bde9df]"
               >
-                {isAdmin
-                  ? "Admin Portal"
-                  : "Patient Portal"}
+                {isAdmin ? "Admin Portal" : "Patient Portal"}
               </Link>
             ) : null}
 
@@ -93,41 +86,29 @@ function PublicNavbar() {
 
             <Link
               to="/contact"
+              onClick={close}
               className="whitespace-nowrap font-medium !text-white no-underline transition hover:!text-[#bde9df]"
             >
               Contact Us
             </Link>
-
           </div>
         </div>
       </div>
 
-
-      {/* =====================================================
-          MAIN NAVBAR
-          STAYS FIXED/STICKY WHILE PAGE SCROLLS
-          ===================================================== */}
-
+      {/* MAIN NAVBAR */}
       <header className="medicare-public-navbar sticky top-0 z-[1000] w-full border-b border-[#e3ecea] bg-white shadow-[0_2px_12px_rgba(16,35,51,0.06)] dark:border-[#29413b] dark:bg-[#12201d]">
-
         <div className="mx-auto flex min-h-[76px] w-full items-center gap-4 px-5 sm:px-8 lg:px-8 xl:px-10">
-
-          {/* =================================================
-              LOGO
-              ================================================= */}
-
+          {/* LOGO */}
           <Link
             to="/"
             onClick={close}
             className="flex shrink-0 items-center gap-3 !text-[#102333] no-underline dark:!text-[#f2f8f6]"
           >
-
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#006b55] text-[24px] font-light !text-white shadow-[0_4px_12px_rgba(0,107,85,0.15)]">
               +
             </div>
 
             <div className="leading-none">
-
               <div className="text-[21px] font-bold tracking-[-0.5px] !text-[#102333] dark:!text-[#f2f8f6]">
                 Medi
                 <span className="!text-[#006b55] dark:!text-[#43c7a5]">
@@ -138,18 +119,11 @@ function PublicNavbar() {
               <div className="mt-1 text-[8px] font-bold tracking-[0.24em] !text-[#73818d] dark:!text-[#91a49f]">
                 HEALTHCARE
               </div>
-
             </div>
-
           </Link>
 
-
-          {/* =================================================
-              DESKTOP NAVIGATION
-              ================================================= */}
-
+          {/* DESKTOP NAVIGATION */}
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
-
             {links.map(([path, label]) => (
               <NavLink
                 key={path}
@@ -174,18 +148,11 @@ function PublicNavbar() {
                 )}
               </NavLink>
             ))}
-
           </nav>
 
-
-          {/* =================================================
-              DESKTOP ACTIONS
-              ================================================= */}
-
+          {/* DESKTOP ACTIONS */}
           <div className="hidden shrink-0 items-center gap-2 lg:flex xl:gap-2.5">
-
             {/* THEME */}
-
             <button
               type="button"
               onClick={toggleTheme}
@@ -204,26 +171,20 @@ function PublicNavbar() {
               {theme === "light" ? "🌙" : "☀️"}
             </button>
 
-
-            {/* FIND DOCTOR */}
-
-            <Link
-              to="/find-doctor"
-              onClick={close}
-              className="whitespace-nowrap rounded-xl border border-[#d5e4e0] px-3.5 py-2.5 text-[13px] font-semibold !text-[#006b55] no-underline transition hover:border-[#006b55] hover:bg-[#e8f6f2] dark:border-[#43c7a5] dark:!text-[#43c7a5] dark:hover:bg-[#163d35]"
-            >
-              Find a Doctor
-            </Link>
-
+            {/* FIND DOCTOR - HIDE ON DOCTOR DIRECTORY PAGE */}
+            {!isFindDoctorPage && (
+              <Link
+                to="/find-doctor"
+                onClick={close}
+                className="whitespace-nowrap rounded-xl border border-[#d5e4e0] px-3.5 py-2.5 text-[13px] font-semibold !text-[#006b55] no-underline transition hover:border-[#006b55] hover:bg-[#e8f6f2] dark:border-[#43c7a5] dark:!text-[#43c7a5] dark:hover:bg-[#163d35]"
+              >
+                Find a Doctor
+              </Link>
+            )}
 
             {/* BOOK APPOINTMENT */}
-
             <Link
-              to={
-                isAuthenticated
-                  ? "/appointments"
-                  : "/login"
-              }
+              to={isAuthenticated ? "/appointments" : "/login"}
               onClick={close}
               className="whitespace-nowrap rounded-xl bg-[#006b55] px-4 py-3 text-[13px] font-semibold !text-white no-underline shadow-[0_5px_15px_rgba(0,107,85,0.16)] transition hover:bg-[#004f40] hover:!text-white dark:bg-[#208c74] dark:hover:bg-[#28a98b]"
             >
@@ -231,15 +192,9 @@ function PublicNavbar() {
               <span className="ml-1.5">→</span>
             </Link>
 
-
-            {/* =================================================
-                AUTHENTICATED PROFILE
-                ================================================= */}
-
+            {/* AUTHENTICATED PROFILE */}
             {isAuthenticated ? (
-
               <div className="relative">
-
                 <button
                   type="button"
                   onClick={() =>
@@ -247,7 +202,6 @@ function PublicNavbar() {
                   }
                   className="flex min-w-[135px] items-center gap-2 rounded-xl border border-[#dfe9e6] bg-white px-2.5 py-2 text-left dark:border-[#29413b] dark:bg-[#182a26]"
                 >
-
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e8f6f2] text-sm font-bold !text-[#006b55] dark:bg-[#163d35] dark:!text-[#43c7a5]">
                     {(user?.username || "U")
                       .charAt(0)
@@ -255,7 +209,6 @@ function PublicNavbar() {
                   </span>
 
                   <span className="min-w-0 flex-1">
-
                     <span className="block max-w-[82px] truncate text-[13px] font-semibold !text-[#102333] dark:!text-[#f2f8f6]">
                       {user?.username || "Account"}
                     </span>
@@ -263,24 +216,17 @@ function PublicNavbar() {
                     <span className="block text-[9px] uppercase tracking-wide !text-[#73818d] dark:!text-[#91a49f]">
                       {isAdmin ? "Admin" : "Patient"}
                     </span>
-
                   </span>
 
                   <span className="text-xs !text-[#73818d] dark:!text-[#91a49f]">
                     {profileOpen ? "⌃" : "⌄"}
                   </span>
-
                 </button>
 
-
                 {/* PROFILE DROPDOWN */}
-
                 {profileOpen && (
-
                   <div className="absolute right-0 top-full z-[1100] mt-2 w-56 overflow-hidden rounded-2xl border border-[#e3ecea] bg-white shadow-[0_15px_40px_rgba(16,35,51,0.14)] dark:border-[#29413b] dark:bg-[#12201d]">
-
                     <div className="border-b border-[#e3ecea] px-4 py-4 dark:border-[#29413b]">
-
                       <p className="text-sm font-bold !text-[#102333] dark:!text-[#f2f8f6]">
                         {user?.username || "Account"}
                       </p>
@@ -290,9 +236,7 @@ function PublicNavbar() {
                           ? "Administrator"
                           : "Patient Account"}
                       </p>
-
                     </div>
-
 
                     <Link
                       to="/dashboard"
@@ -302,7 +246,6 @@ function PublicNavbar() {
                       Dashboard
                     </Link>
 
-
                     <Link
                       to="/my-profile"
                       onClick={() => setProfileOpen(false)}
@@ -310,7 +253,6 @@ function PublicNavbar() {
                     >
                       My Profile
                     </Link>
-
 
                     {!isAdmin && (
                       <Link
@@ -322,7 +264,6 @@ function PublicNavbar() {
                       </Link>
                     )}
 
-
                     <button
                       type="button"
                       onClick={handleLogout}
@@ -330,19 +271,10 @@ function PublicNavbar() {
                     >
                       Logout
                     </button>
-
                   </div>
-
                 )}
-
               </div>
-
             ) : (
-
-              /* =================================================
-                 LOGGED OUT → ONLY ONE SIGN IN
-                 ================================================= */
-
               <Link
                 to="/login"
                 onClick={close}
@@ -350,20 +282,12 @@ function PublicNavbar() {
               >
                 Sign In
               </Link>
-
             )}
-
           </div>
 
-
-          {/* =================================================
-              MOBILE ACTIONS
-              ================================================= */}
-
+          {/* MOBILE ACTIONS */}
           <div className="ml-auto flex items-center gap-2 lg:hidden">
-
             {/* THEME */}
-
             <button
               type="button"
               onClick={toggleTheme}
@@ -382,9 +306,7 @@ function PublicNavbar() {
               {theme === "light" ? "🌙" : "☀️"}
             </button>
 
-
             {/* MENU */}
-
             <button
               type="button"
               onClick={() =>
@@ -396,26 +318,15 @@ function PublicNavbar() {
             >
               {open ? "×" : "☰"}
             </button>
-
           </div>
-
         </div>
 
-
-        {/* =====================================================
-            MOBILE MENU
-            ===================================================== */}
-
+        {/* MOBILE MENU */}
         {open && (
-
           <div className="border-t border-[#e3ecea] bg-white px-5 pb-5 pt-3 dark:border-[#29413b] dark:bg-[#12201d] lg:hidden">
-
             <nav className="mx-auto max-w-xl">
-
               {/* PUBLIC LINKS */}
-
               {links.map(([path, label]) => (
-
                 <NavLink
                   key={path}
                   to={path}
@@ -431,46 +342,33 @@ function PublicNavbar() {
                 >
                   {label}
                 </NavLink>
-
               ))}
 
-
               {/* ACTIONS */}
-
               <div className="mt-3 space-y-2 border-t border-[#e3ecea] pt-4 dark:border-[#29413b]">
-
-                {/* FIND DOCTOR */}
-
-                <Link
-                  to="/find-doctor"
-                  onClick={close}
-                  className="block rounded-xl border border-[#006b55] px-4 py-3 text-center text-sm font-semibold !text-[#006b55] no-underline dark:border-[#43c7a5] dark:!text-[#43c7a5]"
-                >
-                  Find a Doctor
-                </Link>
-
+                {/* FIND DOCTOR - HIDE ON DOCTOR DIRECTORY PAGE */}
+                {!isFindDoctorPage && !isAuthenticated &&  (
+                  <Link
+                    to="/find-doctor"
+                    onClick={close}
+                    className="block rounded-xl border border-[#006b55] px-4 py-3 text-center text-sm font-semibold !text-[#006b55] no-underline dark:border-[#43c7a5] dark:!text-[#43c7a5]"
+                  >
+                    Find a Doctor
+                  </Link>
+                )}
 
                 {/* BOOK APPOINTMENT */}
-
                 <Link
-                  to={
-                    isAuthenticated
-                      ? "/appointments"
-                      : "/login"
-                  }
+                  to={isAuthenticated ? "/appointments" : "/login"}
                   onClick={close}
                   className="block rounded-xl bg-[#006b55] px-4 py-3 text-center text-sm font-semibold !text-white no-underline dark:bg-[#208c74]"
                 >
                   Book Appointment →
                 </Link>
 
-
                 {/* AUTH */}
-
                 {isAuthenticated ? (
-
                   <>
-
                     <Link
                       to="/dashboard"
                       onClick={close}
@@ -481,7 +379,6 @@ function PublicNavbar() {
                         : "Patient Dashboard"}
                     </Link>
 
-
                     <Link
                       to="/my-profile"
                       onClick={close}
@@ -489,7 +386,6 @@ function PublicNavbar() {
                     >
                       My Profile
                     </Link>
-
 
                     {!isAdmin && (
                       <Link
@@ -501,7 +397,6 @@ function PublicNavbar() {
                       </Link>
                     )}
 
-
                     <button
                       type="button"
                       onClick={handleLogout}
@@ -509,13 +404,8 @@ function PublicNavbar() {
                     >
                       Logout
                     </button>
-
                   </>
-
                 ) : (
-
-                  /* ONLY SIGN IN */
-
                   <Link
                     to="/login"
                     onClick={close}
@@ -523,17 +413,11 @@ function PublicNavbar() {
                   >
                     Sign In
                   </Link>
-
                 )}
-
               </div>
-
             </nav>
-
           </div>
-
         )}
-
       </header>
     </>
   );
