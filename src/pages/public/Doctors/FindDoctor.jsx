@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const FindDoctor = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const [doctors, setDoctors] = useState([]);
   const [query, setQuery] = useState("");
