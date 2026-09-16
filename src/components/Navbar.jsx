@@ -4,13 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
-  const {
-    user,
-    logout,
-    isAdmin,
-    isPatient,
-    isAuthenticated,
-  } = useAuth();
+  const { user, logout, isAdmin, isPatient, isAuthenticated } = useAuth();
 
   const { theme, toggleTheme } = useTheme();
 
@@ -99,17 +93,14 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50">
-
       {/* =====================================================
           TOP UTILITY BAR
           ===================================================== */}
 
       <div className="border-b border-[#006b55]/30 bg-[#004f40] text-white">
         <div className="mx-auto flex min-h-[38px] w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-10">
-
           {/* LEFT */}
           <div className="hidden items-center gap-5 sm:flex">
-
             <a
               href="tel:+9118001234567"
               className="!text-white no-underline transition hover:!text-[#bde9df]"
@@ -125,12 +116,10 @@ const Navbar = () => {
             >
               ✉ care@medicare.health
             </a>
-
           </div>
 
           {/* RIGHT */}
           <div className="ml-auto flex items-center gap-4">
-
             {isAuthenticated ? (
               <Link
                 to="/dashboard"
@@ -166,7 +155,6 @@ const Navbar = () => {
             >
               Contact Us
             </Link>
-
           </div>
         </div>
       </div>
@@ -176,9 +164,7 @@ const Navbar = () => {
           ===================================================== */}
 
       <nav className="border-b border-[#e3ecea] bg-white shadow-[0_2px_12px_rgba(16,35,51,0.06)] dark:border-[#29413b] dark:bg-[#12201d]">
-
         <div className="mx-auto flex min-h-[76px] w-full max-w-[1600px] items-center gap-5 px-5 sm:px-8 lg:px-10">
-
           {/* =================================================
               ACTUAL MEDICARE LOGO
               ================================================= */}
@@ -186,13 +172,24 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={closeMenus}
-            className="flex shrink-0 items-center no-underline"
+            className="flex shrink-0 items-center gap-3 !text-[#102333] no-underline dark:!text-[#f2f8f6]"
           >
-            <img
-              src="/images/logo/medicare-logo.svg"
-              alt="MediCare Healthcare"
-              className="h-12 w-auto object-contain"
-            />
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#006b55] text-[24px] font-light !text-white shadow-[0_4px_12px_rgba(0,107,85,0.15)]">
+              +
+            </div>
+
+            <div className="leading-none">
+              <div className="text-[21px] font-bold tracking-[-0.5px] !text-[#102333] dark:!text-[#f2f8f6]">
+                Medi
+                <span className="!text-[#006b55] dark:!text-[#43c7a5]">
+                  Care
+                </span>
+              </div>
+
+              <div className="mt-1 text-[8px] font-bold tracking-[0.24em] !text-[#73818d] dark:!text-[#91a49f]">
+                HEALTHCARE
+              </div>
+            </div>
           </Link>
 
           {/* =================================================
@@ -200,14 +197,12 @@ const Navbar = () => {
               ================================================= */}
 
           <div className="ml-8 hidden min-w-0 flex-1 items-center lg:flex">
-
             {/* =================================================
                 PATIENT NAV
                 ================================================= */}
 
             {isPatient && (
               <nav className="flex items-center gap-1">
-
                 {patientLinks.map(([path, label]) => (
                   <NavLink
                     key={path}
@@ -232,7 +227,6 @@ const Navbar = () => {
                     )}
                   </NavLink>
                 ))}
-
               </nav>
             )}
 
@@ -242,7 +236,6 @@ const Navbar = () => {
 
             {isAdmin && (
               <nav className="flex items-center gap-1">
-
                 {adminMainLinks.map(([path, label]) => (
                   <NavLink
                     key={path}
@@ -271,12 +264,9 @@ const Navbar = () => {
                 {/* MANAGEMENT */}
 
                 <div className="relative">
-
                   <button
                     type="button"
-                    onClick={() =>
-                      setManagementOpen((value) => !value)
-                    }
+                    onClick={() => setManagementOpen((value) => !value)}
                     className={`flex items-center gap-1 whitespace-nowrap rounded-lg px-3 py-3 text-[13px] font-medium transition ${
                       managementOpen
                         ? "text-[#006b55] dark:text-[#43c7a5]"
@@ -284,7 +274,6 @@ const Navbar = () => {
                     }`}
                   >
                     Management
-
                     <span className="text-[11px]">
                       {managementOpen ? "⌃" : "⌄"}
                     </span>
@@ -292,7 +281,6 @@ const Navbar = () => {
 
                   {managementOpen && (
                     <div className="absolute left-0 top-full z-[100] mt-1 w-52 overflow-hidden rounded-2xl border border-[#e3ecea] bg-white py-2 shadow-[0_15px_40px_rgba(16,35,51,0.14)] dark:border-[#29413b] dark:bg-[#12201d]">
-
                       {adminManagementLinks.map(([path, label]) => (
                         <Link
                           key={path}
@@ -303,12 +291,9 @@ const Navbar = () => {
                           {label}
                         </Link>
                       ))}
-
                     </div>
                   )}
-
                 </div>
-
               </nav>
             )}
 
@@ -318,7 +303,6 @@ const Navbar = () => {
 
             {!isAuthenticated && (
               <nav className="flex flex-1 items-center justify-center gap-0.5">
-
                 {publicLinks.map(([path, label]) => (
                   <NavLink
                     key={path}
@@ -343,10 +327,8 @@ const Navbar = () => {
                     )}
                   </NavLink>
                 ))}
-
               </nav>
             )}
-
           </div>
 
           {/* =================================================
@@ -354,7 +336,6 @@ const Navbar = () => {
               ================================================= */}
 
           <div className="ml-auto hidden shrink-0 items-center gap-2.5 lg:flex">
-
             {/* THEME BUTTON */}
 
             <button
@@ -398,23 +379,16 @@ const Navbar = () => {
 
             {isAuthenticated ? (
               <div className="relative">
-
                 <button
                   type="button"
-                  onClick={() =>
-                    setProfileOpen((value) => !value)
-                  }
+                  onClick={() => setProfileOpen((value) => !value)}
                   className="flex min-w-[145px] items-center gap-2 rounded-xl border border-[#dfe9e6] bg-white px-3 py-2 text-left dark:border-[#29413b] dark:bg-[#182a26]"
                 >
-
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e8f6f2] text-sm font-bold !text-[#006b55] dark:bg-[#163d35] dark:!text-[#43c7a5]">
-                    {(user?.username || "U")
-                      .charAt(0)
-                      .toUpperCase()}
+                    {(user?.username || "U").charAt(0).toUpperCase()}
                   </span>
 
                   <span className="min-w-0 flex-1">
-
                     <span className="block max-w-[90px] truncate text-[13px] font-semibold !text-[#102333] dark:!text-[#f2f8f6]">
                       {user?.username || "Account"}
                     </span>
@@ -422,32 +396,25 @@ const Navbar = () => {
                     <span className="block text-[10px] uppercase tracking-wide !text-[#73818d] dark:!text-[#91a49f]">
                       {isAdmin ? "Admin" : "Patient"}
                     </span>
-
                   </span>
 
                   <span className="text-xs !text-[#73818d] dark:!text-[#91a49f]">
                     {profileOpen ? "⌃" : "⌄"}
                   </span>
-
                 </button>
 
                 {/* PROFILE DROPDOWN */}
 
                 {profileOpen && (
                   <div className="absolute right-0 top-full z-[100] mt-2 w-56 overflow-hidden rounded-2xl border border-[#e3ecea] bg-white shadow-[0_15px_40px_rgba(16,35,51,0.14)] dark:border-[#29413b] dark:bg-[#12201d]">
-
                     <div className="border-b border-[#e3ecea] px-4 py-4 dark:border-[#29413b]">
-
                       <p className="text-sm font-bold !text-[#102333] dark:!text-[#f2f8f6]">
                         {user?.username || "Account"}
                       </p>
 
                       <p className="mt-1 text-xs !text-[#73818d] dark:!text-[#91a49f]">
-                        {isAdmin
-                          ? "Administrator"
-                          : "Patient Account"}
+                        {isAdmin ? "Administrator" : "Patient Account"}
                       </p>
-
                     </div>
 
                     <Link
@@ -469,9 +436,7 @@ const Navbar = () => {
                     {isPatient && (
                       <Link
                         to="/appointments"
-                        onClick={() =>
-                          setProfileOpen(false)
-                        }
+                        onClick={() => setProfileOpen(false)}
                         className="block px-4 py-3 text-sm font-medium !text-[#455565] no-underline hover:bg-[#f7fafb] hover:!text-[#006b55] dark:!text-[#c7d5d1] dark:hover:bg-[#182a26] dark:hover:!text-[#43c7a5]"
                       >
                         My Appointments
@@ -485,15 +450,11 @@ const Navbar = () => {
                     >
                       Logout
                     </button>
-
                   </div>
                 )}
-
               </div>
             ) : (
-
               <div className="flex items-center gap-1">
-
                 <Link
                   to="/login"
                   className="whitespace-nowrap rounded-xl px-3 py-2 text-[13px] font-semibold !text-[#006b55] no-underline hover:bg-[#e8f6f2] dark:!text-[#43c7a5]"
@@ -507,11 +468,8 @@ const Navbar = () => {
                 >
                   Admin Login
                 </Link>
-
               </div>
-
             )}
-
           </div>
 
           {/* =================================================
@@ -519,7 +477,6 @@ const Navbar = () => {
               ================================================= */}
 
           <div className="ml-auto flex items-center gap-2 lg:hidden">
-
             {/* THEME */}
 
             <button
@@ -544,17 +501,13 @@ const Navbar = () => {
 
             <button
               type="button"
-              onClick={() =>
-                setMenuOpen((value) => !value)
-              }
+              onClick={() => setMenuOpen((value) => !value)}
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#dfe9e6] bg-white text-xl !text-[#102333] dark:border-[#29413b] dark:bg-[#182a26] dark:!text-[#f2f8f6]"
               aria-label="Toggle menu"
             >
               {menuOpen ? "×" : "☰"}
             </button>
-
           </div>
-
         </div>
 
         {/* =====================================================
@@ -563,9 +516,7 @@ const Navbar = () => {
 
         {menuOpen && (
           <div className="border-t border-[#e3ecea] bg-white px-5 pb-5 pt-3 dark:border-[#29413b] dark:bg-[#12201d] lg:hidden">
-
             <div className="mx-auto max-w-xl">
-
               {/* PATIENT */}
 
               {isPatient &&
@@ -610,24 +561,20 @@ const Navbar = () => {
                   ))}
 
                   <div className="mt-2 border-t border-[#e3ecea] pt-2 dark:border-[#29413b]">
-
                     <p className="px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] !text-[#73818d] dark:!text-[#91a49f]">
                       Management
                     </p>
 
-                    {adminManagementLinks.map(
-                      ([path, label]) => (
-                        <NavLink
-                          key={path}
-                          to={path}
-                          onClick={closeMenus}
-                          className="block rounded-xl px-4 py-3 text-sm font-medium !text-[#455565] no-underline dark:!text-[#c7d5d1]"
-                        >
-                          {label}
-                        </NavLink>
-                      )
-                    )}
-
+                    {adminManagementLinks.map(([path, label]) => (
+                      <NavLink
+                        key={path}
+                        to={path}
+                        onClick={closeMenus}
+                        className="block rounded-xl px-4 py-3 text-sm font-medium !text-[#455565] no-underline dark:!text-[#c7d5d1]"
+                      >
+                        {label}
+                      </NavLink>
+                    ))}
                   </div>
                 </>
               )}
@@ -650,7 +597,6 @@ const Navbar = () => {
               {/* MOBILE ACTIONS */}
 
               <div className="mt-3 space-y-2 border-t border-[#e3ecea] pt-4 dark:border-[#29413b]">
-
                 <Link
                   to="/find-doctor"
                   onClick={closeMenus}
@@ -660,9 +606,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  to={isAuthenticated
-                    ? "/appointments"
-                    : "/login"}
+                  to={isAuthenticated ? "/appointments" : "/login"}
                   onClick={closeMenus}
                   className="block rounded-xl bg-[#006b55] px-4 py-3 text-center text-sm font-semibold !text-white no-underline dark:bg-[#208c74]"
                 >
@@ -689,7 +633,6 @@ const Navbar = () => {
                   </>
                 ) : (
                   <div className="grid grid-cols-2 gap-2">
-
                     <Link
                       to="/login"
                       onClick={closeMenus}
@@ -705,16 +648,12 @@ const Navbar = () => {
                     >
                       Admin Login
                     </Link>
-
                   </div>
                 )}
-
               </div>
-
             </div>
           </div>
         )}
-
       </nav>
     </header>
   );
