@@ -1,0 +1,1156 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   MEDICARE DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+  --primary: #006b55;
+  --primary-dark: #004f40;
+  --primary-light: #e8f6f2;
+  --secondary: #0b8068;
+  --accent: #dff3ee;
+
+  --heading: #102333;
+  --text: #455565;
+  --muted: #73818d;
+
+  --white: #ffffff;
+  --background: #f7fafb;
+  --surface: #ffffff;
+  --border: #e3ecea;
+
+  --success: #16835f;
+  --danger: #d64545;
+  --warning: #e5a000;
+
+  --shadow-sm: 0 4px 14px rgba(16, 35, 51, 0.08);
+  --shadow-md: 0 10px 30px rgba(16, 35, 51, 0.1);
+  --shadow-lg: 0 18px 45px rgba(16, 35, 51, 0.14);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+}
+
+
+/* =========================================================
+   GLOBAL RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background: var(--background);
+  color: var(--text);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  color: var(--heading);
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.7;
+}
+
+::selection {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+
+/* =========================================================
+   MEDICARE PUBLIC LINKS
+   ========================================================= */
+
+/* Normal green link */
+
+.medicare-link,
+.medicare-link:link,
+.medicare-link:visited {
+  color: #006b55 !important;
+  text-decoration: none !important;
+}
+
+.medicare-link:hover,
+.medicare-link:active,
+.medicare-link:focus {
+  color: #004f40 !important;
+  text-decoration: none !important;
+}
+
+
+/* Green action link */
+
+.medicare-action-link,
+.medicare-action-link:link,
+.medicare-action-link:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #006b55 !important;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-decoration: none !important;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.medicare-action-link:hover,
+.medicare-action-link:active,
+.medicare-action-link:focus {
+  color: #004f40 !important;
+  gap: 16px;
+}
+
+.medicare-action-link span {
+  color: inherit !important;
+}
+
+
+/* =========================================================
+   GREEN LINK — PUBLIC PAGES
+   ========================================================= */
+
+a.medicare-green-link,
+a.medicare-green-link:link,
+a.medicare-green-link:visited {
+  color: #006b55 !important;
+  text-decoration: none !important;
+}
+
+a.medicare-green-link span {
+  color: #006b55 !important;
+}
+
+a.medicare-green-link:hover,
+a.medicare-green-link:active,
+a.medicare-green-link:focus {
+  color: #004f40 !important;
+}
+
+a.medicare-green-link:hover span,
+a.medicare-green-link:active span,
+a.medicare-green-link:focus span {
+  color: #004f40 !important;
+}
+
+
+/* =========================================================
+   WHITE LINK — DARK / GREEN CTA
+   ========================================================= */
+
+a.medicare-white-link,
+a.medicare-white-link:link,
+a.medicare-white-link:visited {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+a.medicare-white-link span {
+  color: #ffffff !important;
+}
+
+a.medicare-white-link:hover,
+a.medicare-white-link:active,
+a.medicare-white-link:focus {
+  color: #e8f6f2 !important;
+}
+
+a.medicare-white-link:hover span,
+a.medicare-white-link:active span,
+a.medicare-white-link:focus span {
+  color: #e8f6f2 !important;
+}
+
+
+/* =========================================================
+   HOME CTA
+   ========================================================= */
+
+/* Find a Doctor - white button */
+
+a.home-cta-find,
+a.home-cta-find:link,
+a.home-cta-find:visited {
+  color: #006b55 !important;
+  background: #ffffff !important;
+  text-decoration: none !important;
+}
+
+a.home-cta-find span {
+  color: #006b55 !important;
+}
+
+a.home-cta-find:hover,
+a.home-cta-find:active,
+a.home-cta-find:focus {
+  color: #004f40 !important;
+  background: #e8f6f2 !important;
+}
+
+a.home-cta-find:hover span,
+a.home-cta-find:active span,
+a.home-cta-find:focus span {
+  color: #004f40 !important;
+}
+
+
+/* Contact us - outlined white button */
+
+a.home-cta-contact,
+a.home-cta-contact:link,
+a.home-cta-contact:visited {
+  color: #ffffff !important;
+  background: transparent !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+
+  text-decoration: none !important;
+}
+
+a.home-cta-contact span {
+  color: #ffffff !important;
+}
+
+a.home-cta-contact:hover,
+a.home-cta-contact:active,
+a.home-cta-contact:focus {
+  color: #006b55 !important;
+  background: #ffffff !important;
+
+  border-color: #ffffff !important;
+}
+
+a.home-cta-contact:hover span,
+a.home-cta-contact:active span,
+a.home-cta-contact:focus span {
+  color: #006b55 !important;
+}
+
+
+/* =========================================================
+   BOOTSTRAP OVERRIDES
+   ========================================================= */
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+
+/* Bootstrap primary button */
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+  color: #ffffff !important;
+}
+
+
+/* Bootstrap outline button */
+
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  color: #ffffff !important;
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+
+/* Bootstrap link button */
+
+.btn-link {
+  color: var(--primary) !important;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+  color: var(--primary-dark) !important;
+}
+
+
+/* Bootstrap primary links */
+
+a.text-primary,
+a.link-primary {
+  color: var(--primary) !important;
+}
+
+a.text-primary:hover,
+a.link-primary:hover {
+  color: var(--primary-dark) !important;
+}
+
+
+/* =========================================================
+   MEDICARE BUTTONS
+   ========================================================= */
+
+.medicare-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 24px;
+
+  border: 1px solid var(--primary) !important;
+  border-radius: 12px;
+
+  background: var(--primary) !important;
+  color: #ffffff !important;
+
+  font-weight: 600;
+  text-decoration: none !important;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.medicare-btn:hover {
+  background: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+  color: #ffffff !important;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 22px rgba(0, 107, 85, 0.18);
+}
+
+
+/* White button */
+
+.medicare-btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 24px;
+
+  border: 1px solid #ffffff !important;
+  border-radius: 12px;
+
+  background: #ffffff !important;
+  color: var(--primary) !important;
+
+  font-weight: 600;
+  text-decoration: none !important;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.medicare-btn-white:hover {
+  background: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+  color: var(--primary-dark) !important;
+
+  transform: translateY(-1px);
+}
+
+
+/* Outline button */
+
+.medicare-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 24px;
+
+  border: 1px solid var(--primary) !important;
+  border-radius: 12px;
+
+  background: transparent !important;
+  color: var(--primary) !important;
+
+  font-weight: 600;
+  text-decoration: none !important;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.medicare-btn-outline:hover {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer a {
+  text-decoration: none !important;
+}
+
+footer a:hover {
+  text-decoration: none !important;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 3px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary) !important;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 107, 85, 0.12) !important;
+
+  outline: none !important;
+}
+
+
+/* =========================================================
+   PUBLIC PAGE
+   ========================================================= */
+
+.public-page {
+  min-height: 100vh;
+}
+
+.public-page a {
+  text-decoration: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  h1 {
+    letter-spacing: -0.02em;
+  }
+}
+
+
+/* =========================================================
+   FINAL LINK COLOR SAFETY
+   Prevent Bootstrap / browser blue links
+   ========================================================= */
+
+.public-page a.medicare-green-link,
+.public-page a.medicare-green-link:link,
+.public-page a.medicare-green-link:visited {
+  color: #006b55 !important;
+}
+
+.public-page a.medicare-green-link:hover,
+.public-page a.medicare-green-link:active,
+.public-page a.medicare-green-link:focus {
+  color: #004f40 !important;
+}
+
+.public-page a.medicare-white-link,
+.public-page a.medicare-white-link:link,
+.public-page a.medicare-white-link:visited {
+  color: #ffffff !important;
+}
+
+.public-page a.medicare-white-link:hover,
+.public-page a.medicare-white-link:active,
+.public-page a.medicare-white-link:focus {
+  color: #e8f6f2 !important;
+}
+
+/* Force green text for white CTA buttons */
+a.home-cta-find,
+a.home-cta-find:link,
+a.home-cta-find:visited,
+a.home-cta-find:hover,
+a.home-cta-find:active {
+  color: #006b55 !important;
+  text-decoration: none !important;
+}
+
+a.home-cta-find span {
+  color: #006b55 !important;
+}
+
+/* =========================================================
+   SPECIALITIES CTA - FORCE GREEN TEXT
+   ========================================================= */
+
+a.speciality-find-doctor-btn,
+a.speciality-find-doctor-btn:link,
+a.speciality-find-doctor-btn:visited,
+a.speciality-find-doctor-btn:hover,
+a.speciality-find-doctor-btn:active,
+a.speciality-find-doctor-btn:focus {
+  color: #006b55 !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.speciality-find-doctor-btn span {
+  color: #006b55 !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+/* SPECIALITIES BOTTOM CTA - FORCE GREEN */
+a.speciality-cta-find-doctor,
+a.speciality-cta-find-doctor:link,
+a.speciality-cta-find-doctor:visited,
+a.speciality-cta-find-doctor:hover,
+a.speciality-cta-find-doctor:active,
+a.speciality-cta-find-doctor:focus {
+  color: #006b55 !important;
+  background-color: #ffffff !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.speciality-cta-find-doctor span {
+  color: #006b55 !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.speciality-cta-find-doctor:hover {
+  color: #004f40 !important;
+  background-color: #e8f6f2 !important;
+}
+
+a.speciality-cta-find-doctor:hover span {
+  color: #004f40 !important;
+  -webkit-text-fill-color: #004f40 !important;
+}
+
+/* =========================================================
+   FIND DOCTOR - CONTACT MEDICARE BUTTON
+   ========================================================= */
+
+button.contact-medicare-btn {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: none !important;
+  color: #006b55 !important;
+  background-color: #ffffff !important;
+}
+
+button.contact-medicare-btn span {
+  color: #006b55 !important;
+}
+
+button.contact-medicare-btn:hover {
+  border-radius: 14px !important;
+  background-color: #e8f6f2 !important;
+  color: #006b55 !important;
+}
+
+/* =========================================================
+   HOSPITAL PAGE - FIND DOCTOR CTA
+   ========================================================= */
+
+a.hospital-find-doctor-btn,
+a.hospital-find-doctor-btn:link,
+a.hospital-find-doctor-btn:visited,
+a.hospital-find-doctor-btn:hover,
+a.hospital-find-doctor-btn:active,
+a.hospital-find-doctor-btn:focus {
+  color: #006b55 !important;
+  background-color: #ffffff !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.hospital-find-doctor-btn span {
+  color: #006b55 !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.hospital-find-doctor-btn:hover {
+  color: #004f40 !important;
+  background-color: #e8f6f2 !important;
+}
+
+a.hospital-find-doctor-btn:hover span {
+  color: #004f40 !important;
+  -webkit-text-fill-color: #004f40 !important;
+}
+
+ /* =========================================================
+    SERVICES PAGE - FIND DOCTOR CTA
+    ========================================================= */
+
+a.services-find-doctor-btn,
+a.services-find-doctor-btn:link,
+a.services-find-doctor-btn:visited,
+a.services-find-doctor-btn:hover,
+a.services-find-doctor-btn:active,
+a.services-find-doctor-btn:focus {
+  color: #006b55 !important;
+  background-color: #ffffff !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.services-find-doctor-btn span {
+  color: #006b55 !important;
+  -webkit-text-fill-color: #006b55 !important;
+}
+
+a.services-find-doctor-btn:hover {
+  color: #004f40 !important;
+  background-color: #e8f6f2 !important;
+}
+
+a.services-find-doctor-btn:hover span {
+  color: #004f40 !important;
+  -webkit-text-fill-color: #004f40 !important;
+}
+
+/* =========================================================
+   MEDICARE DASHBOARD - FORCE GREEN LINKS
+========================================================= */
+
+.dashboard-page a,
+.dashboard-page a:link,
+.dashboard-page a:visited {
+  color: #006b55 !important;
+  text-decoration: none !important;
+}
+
+.dashboard-page a:hover,
+.dashboard-page a:active {
+  color: #004f40 !important;
+  text-decoration: none !important;
+}
+
+/* White text only where explicitly required */
+.dashboard-page .dashboard-white-link,
+.dashboard-page .dashboard-white-link:link,
+.dashboard-page .dashboard-white-link:visited {
+  color: #ffffff !important;
+}
+
+/* Headings/text inside cards should never become blue */
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page h3,
+.dashboard-page h4,
+.dashboard-page p,
+.dashboard-page span,
+.dashboard-page strong {
+  --bs-link-color: inherit;
+}
+
+/* Tailwind/Bootstrap SVG or icon links */
+.dashboard-page a svg {
+  color: inherit !important;
+}
+
+
+/* =========================================================
+   MEDICARE THEME SYSTEM
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+
+  --primary: #006b55;
+  --primary-dark: #004f40;
+  --primary-light: #e8f6f2;
+
+  --background: #f7fafb;
+  --surface: #ffffff;
+  --surface-soft: #f1f7f5;
+
+  --heading: #102333;
+  --text: #455565;
+  --muted: #73818d;
+
+  --border: #e3ecea;
+
+  --shadow-sm: 0 4px 14px rgba(16, 35, 51, 0.08);
+  --shadow-md: 0 10px 30px rgba(16, 35, 51, 0.10);
+  --shadow-lg: 0 18px 45px rgba(16, 35, 51, 0.14);
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+html.dark {
+  color-scheme: dark;
+
+  --primary: #28a98b;
+  --primary-dark: #1b806a;
+  --primary-light: #163d35;
+
+  --background: #0b1513;
+  --surface: #12201d;
+  --surface-soft: #182a26;
+
+  --heading: #f2f8f6;
+  --text: #c7d5d1;
+  --muted: #91a49f;
+
+  --border: #29413b;
+
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.38);
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Main common surfaces */
+html.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+html.dark .bg-gray-50,
+html.dark .bg-gray-100 {
+  background-color: var(--surface-soft) !important;
+}
+
+html.dark .text-gray-900,
+html.dark .text-gray-800 {
+  color: var(--heading) !important;
+}
+
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: var(--text) !important;
+}
+
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: var(--muted) !important;
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-gray-300 {
+  border-color: var(--border) !important;
+}
+
+/* =========================================================
+   COMMON MEDICARE COLORS
+   ========================================================= */
+
+html.dark .text-\[\#102333\] {
+  color: var(--heading) !important;
+}
+
+html.dark .text-\[\#455565\] {
+  color: var(--text) !important;
+}
+
+html.dark .text-\[\#73818d\] {
+  color: var(--muted) !important;
+}
+
+html.dark .bg-\[\#f7fafb\] {
+  background-color: var(--background) !important;
+}
+
+html.dark .bg-\[\#e8f6f2\] {
+  background-color: var(--primary-light) !important;
+}
+
+html.dark .border-\[\#e3ecea\] {
+  border-color: var(--border) !important;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #162723 !important;
+  color: #edf7f4 !important;
+  border-color: #304b44 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #81958f !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(40, 169, 139, 0.15) !important;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+html.dark table {
+  color: var(--text);
+}
+
+html.dark thead {
+  background-color: #182a26 !important;
+}
+
+html.dark tbody tr {
+  border-color: var(--border) !important;
+}
+
+html.dark tbody tr:hover {
+  background-color: #172824 !important;
+}
+
+/* =========================================================
+   MODALS / DROPDOWNS
+   ========================================================= */
+
+html.dark .shadow-sm,
+html.dark .shadow-md,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+html.dark a {
+  transition: color 0.2s ease;
+}
+
+/* Existing Medicare green links */
+html.dark a.medicare-green-link,
+html.dark a.medicare-green-link:link,
+html.dark a.medicare-green-link:visited {
+  color: #43c7a5 !important;
+}
+
+html.dark a.medicare-green-link:hover,
+html.dark a.medicare-green-link:active {
+  color: #72dfc1 !important;
+}
+
+/* =========================================================
+   SMOOTH THEME TRANSITION
+   ========================================================= */
+
+html.dark body,
+html.dark main,
+html.dark section,
+html.dark header,
+html.dark footer,
+html.dark nav,
+html.dark article,
+html.dark aside,
+html.dark form,
+html.dark table {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* =========================================================
+   MEDICARE GLOBAL WIDTH / OVERFLOW FIX
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Prevent accidental horizontal expansion */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Navbar must always occupy the complete viewport */
+header,
+nav {
+  max-width: 100%;
+}
+
+/* Prevent flex children from forcing page width */
+.flex,
+.grid {
+  min-width: 0;
+}
+
+/* Long navigation/content should not create horizontal scroll */
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* =========================================================
+   PUBLIC NAVBAR
+   ========================================================= */
+
+.medicare-public-navbar {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================================
+   MEDICARE STICKY NAVBAR (FORTIS STYLE)
+   ========================================================= */
+
+/* Top utility bar scrolls away */
+.medicare-topbar{
+  position: relative;
+  z-index: 40;
+}
+
+/* Only white navbar stays fixed */
+.medicare-public-navbar{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e3ecea;
+  box-shadow: 0 2px 12px rgba(16,35,51,.06);
+}
+
+/* Dark mode */
+html.dark .medicare-public-navbar{
+  background:#12201d;
+  border-color:#29413b;
+}
+
+/* Prevent content hiding behind sticky navbar */
+.public-page{
+  padding-top:0;
+}
+
+/* Remove horizontal scroll completely */
+html,
+body,
+#root{
+  overflow-x:hidden;
+  width:100%;
+  max-width:100%;
+}
+
+.medicare-public-navbar *{
+  min-width:0;
+}
+
+/* Navbar container */
+.nav-container{
+  max-width:1600px;
+  margin:auto;
+  width:100%;
+}
+
+/* =========================================================
+   MEDICARE PUBLIC NAVBAR - FINAL STICKY FIX
+   Top utility bar scrolls away.
+   Main navbar always stays visible.
+   ========================================================= */
+
+.medicare-topbar {
+  position: relative !important;
+  width: 100% !important;
+  z-index: 999 !important;
+}
+
+.medicare-public-navbar {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  z-index: 1000 !important;
+
+  background: #ffffff !important;
+  border-bottom: 1px solid #e3ecea !important;
+
+  box-shadow: 0 2px 12px rgba(16, 35, 51, 0.06) !important;
+}
+
+html.dark .medicare-public-navbar {
+  background: #12201d !important;
+  border-bottom-color: #29413b !important;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.30) !important;
+}
+
+/*
+  IMPORTANT:
+  overflow-x:hidden can interfere with sticky positioning
+  in some browser/layout combinations.
+*/
+html {
+  overflow-x: clip !important;
+}
+
+body {
+  overflow-x: clip !important;
+}
+
+/* Don't let any parent create a scroll container */
+#root {
+  overflow-x: clip !important;
+}
+
+/* Navbar inner container */
+.medicare-public-navbar > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Keep desktop navbar in one line */
+.medicare-public-navbar nav {
+  min-width: 0;
+}
+
+/* Prevent buttons/text from breaking the navbar width */
+.medicare-public-navbar a,
+.medicare-public-navbar button {
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  .medicare-public-navbar {
+    position: sticky !important;
+    top: 0 !important;
+  }
+}
