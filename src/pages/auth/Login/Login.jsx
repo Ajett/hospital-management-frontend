@@ -48,9 +48,9 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href =
-      `${import.meta.env.VITE_API_BASE_URL}/oauth2/authorization/google`;
-  };
+  window.location.href =
+    "https://hospital-management-system-dap5.onrender.com/oauth2/authorization/google";
+};
 
   return (
     <main className="min-h-screen bg-[#f7fafb]">
