@@ -1,27 +1,95 @@
-# MediCare Hospital Management System — Frontend
+# 🏥 Hospital Management System – Frontend
 
-## Stack
-- React 19 + Vite
-- React Router
-- Tailwind CSS v4
-- Axios
-- Bootstrap retained for legacy protected screens during the migration
+A modern and user-friendly **Hospital Management System** frontend built with React.js and integrated with a Spring Boot backend. This project is designed to provide a convenient interface for patients and hospital administrators to access hospital-related services.
 
-## Run
+This repository contains the **frontend application** of my full-stack Hospital Management System. The backend was developed separately using Java and Spring Boot.
+
+## 🌐 Live Demo
+
+🔗 **Live Website:** https://hospital-management-frontend-hruo.onrender.com
+
+## ✨ Features
+
+* Responsive and user-friendly hospital website interface
+* Doctor discovery and doctor-related pages
+* User login and registration
+* Google OAuth 2.0 sign-in integration
+* Integration with backend REST APIs
+* Role-based access to application features
+* Appointment-related user interface
+
+> Features and access may depend on backend availability and user role.
+
+## 🛠️ Tech Stack
+
+| Technology       | Purpose            |
+| ---------------- | ------------------ |
+| React.js         | Frontend UI        |
+| JavaScript       | Application logic  |
+| HTML5            | Page structure     |
+| CSS              | Styling and layout |
+| Spring Boot      | Backend REST APIs  |
+| MySQL            | Database           |
+| Google OAuth 2.0 | Authentication     |
+
+## 🔗 Related Repository
+
+**Frontend:** [Hospital Management System – Frontend](https://github.com/Ajett/hospital-management-frontend)
+
+*Add your backend repository link here if it is public.*
+
+## ⚙️ Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Ajett/hospital-management-frontend.git
+```
+
+### 2. Navigate to the project folder
+
+```bash
+cd hospital-management-frontend
+```
+
+### 3. Install dependencies
 
 ```bash
 npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_BASE_URL=https://hospital-management-system-dap5.onrender.com
+```
+
+### 5. Start the development server
+
+```bash
 npm run dev
 ```
 
-Production build:
+Open the local URL shown in your terminal.
 
-```bash
-npm run build
-```
+## 📸 Screenshots
 
-## Important
+*Add screenshots of your homepage, doctor listing, login page, and other important screens here.*
 
-The frontend keeps the existing backend API contract and authentication flow. The redesign changes the presentation, component organization and shared healthcare theme; it does not change Spring Boot endpoints or database code.
+## 🎯 Project Goal
 
-`VITE_API_BASE_URL` in `.env` points to the configured backend deployment. Update it only if your backend URL changes.
+The goal of this project is to build a full-stack hospital management application while improving my skills in React.js, REST API integration, authentication, and frontend development.
+
+## 👨‍💻 Developer
+
+**Ajeet Kumar**
+
+* GitHub: [@Ajett](https://github.com/Ajett)
+* LinkedIn: [Ajeet Kumar](https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/)
+
+---
+
+⭐ If you find this project interesting, feel free to explore the repository and share your feedback!
+!
